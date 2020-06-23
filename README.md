@@ -15,7 +15,7 @@ npm start
 ```
 
 ```
-Type an integer number to get cardinal string: 127
+Type an integer number to get cardinal and ordinal string: 127
 
 Ciento Veinti y Siete 
 Ciento Vigésimo Septimo 
