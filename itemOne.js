@@ -1,5 +1,7 @@
 "use-strict"
 
+const capitalize = require('./utils')
+
 class NumberCardinalText {
 
     processNumberToReturn(cardinal){
@@ -124,8 +126,8 @@ class NumberCardinalText {
                 result+="Noventa ";
                 break;
         }
-
-        if (decenas > 2 && unidades > 0)
+        
+        if (decenas > 2 && unidades > 0 && !(result.includes('Veinti') || result.includes('Dieci')))
             result+= (!space)? " y " : "y ";
 
         switch (parseInt(unidades)) {
@@ -166,7 +168,7 @@ class NumberCardinalText {
     }
 
     getResult(number){
-        return this.processNumberToReturn(number);
+        return capitalize(this.processNumberToReturn(number).toLowerCase());
     }
 
 }
