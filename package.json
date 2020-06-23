@@ -1,0 +1,16 @@
+{
+  "name": "numbertextformat",
+  "version": "1.0.0",
+  "description": "This is a project to generate the string of number inputs ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Manuel. Jeferson",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "^3.5.0"
+  }
+}
