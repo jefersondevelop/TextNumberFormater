@@ -18,7 +18,7 @@ class NumberCardinalText {
         let millions = parseInt((cardinal / 1000000) % 1000);
         let mileMillions = Math.trunc((cardinal / 1000000000) % 1000);
 
-        //console.log(units, miles, millions, mileMillions);
+        //console.log({units, miles, millions, mileMillions});
         
         if (mileMillions > 0) result += this.getTexto(mileMillions, result.length > 0).toString() + "Mil ";
         if (millions > 0) result += this.getTexto(millions,result.length > 0).toString();
@@ -27,6 +27,7 @@ class NumberCardinalText {
         else if (mileMillions > 0 || millions > 0) result+="Millones ";
 
         if (miles > 0) result += this.getTexto(miles,result.length > 0).toString() + "Mil ";
+        if(miles === 1 && units > 0 && result.length > 0 && result.includes("Mil ")) result = result.split('Un ')[1]
         if (units > 0) result += this.getTexto(units,result.length > 0).toString();
 
         return result;
@@ -130,11 +131,16 @@ class NumberCardinalText {
         if (decenas > 2 && unidades > 0 && !(result.includes('Veinti') || result.includes('Dieci')))
             result+= (!space)? " y " : "y ";
 
+        //console.log({unidades,decenas,centenas})
+
         switch (parseInt(unidades)) {
             case 0:
                 break;
             case 1:
-                result+="Un ";
+                if(!space)
+                    result+="Un ";
+                else
+                    result+="Uno"
                 break;
             case 2:
                 result+="Dos ";
