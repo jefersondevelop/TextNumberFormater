@@ -4,13 +4,16 @@
   "description": "This is a project to generate the string of number inputs ",
   "main": "index.js",
   "scripts": {
-    "test": "jasmine",
+    "test": "npm run build && jasmine",
+    "build": "flow-remove-types src/ -d lib/",
     "start": "nodemon index.js"
   },
   "author": "Manuel. Jeferson",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {
+    "flow-bin": "^0.127.0",
+    "flow-remove-types": "^2.127.0",
     "jasmine": "^3.5.0"
   }
 }

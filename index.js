@@ -1,5 +1,5 @@
-var NumberCardinalText = require('./itemOne');
-var NumberOrdinalText = require('./itemTwo');
+var NumberCardinalText = require('./src/itemOne');
+var NumberOrdinalText = require('./src/itemTwo');
 
 let cardinalInstance = new NumberCardinalText();
 let ordinalInstance = new NumberOrdinalText();

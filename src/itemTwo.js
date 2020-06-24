@@ -1,48 +1,57 @@
 "use-strict"
 
-const capitalize = require('./utils')
-
 class NumberCardinalText {
+
+    // Function to process the cardinal number got
 
     processNumberToReturn(cardinal){
         
         let result = ``;
+
+        // verify if number is zero
 
         if (cardinal == 0) {
             result+="Cero ";
             return result.toString();
         }
 
+        // Get units, miles, millions and mile of millions of cardinal number got
+
         let units = parseInt(cardinal % 1000);
         let miles = parseInt((cardinal / 1000) % 1000);
         let millions = parseInt((cardinal / 1000000) % 1000);
         let mileMillions = Math.trunc((cardinal / 1000000000) % 1000);
         
-        if (mileMillions > 0) result += this.getTexto(mileMillions, result.length > 0).toString() + "Mil ";
-        if (millions > 0) result += this.getTexto(millions,result.length > 0).toString();
+        // Parse part by part checking units, miles, miles and mile of millions of cardinal number got
 
-        if (mileMillions === 0 && millions === 1) result+="Millón ";
-        else if (mileMillions > 0 || millions > 0) result+="Millones ";
+        if (mileMillions > 0) result += this.getTexto(mileMillions).toString() + "";
+        if (millions > 0) result += this.getTexto(millions).toString();
 
-        if (miles > 0) result += this.getTexto(miles,result.length > 0).toString() + "Mil ";
-        if (miles === 1 && units > 0 && result.length > 0 && result.includes("Mil ")) result = result.split('Ún ')[1]? result.split('Ún ')[1] : result.split('Uno ')[1]? result.split('Uno ')[1] : result.split('Un ')[1];
-        if (units > 0) result += this.getTexto(units,result.length > 0).toString();
+        if (mileMillions == 0 && millions == 1) result+="";
+        else if (mileMillions > 0 || millions > 0) result+="";
+
+        if (miles > 0) result += this.getTexto(miles).toString() + "";
+        if (units > 0) result += this.getTexto(units).toString();
 
         return result;
 
     }
 
-    getTexto(n, space){
-        let result = '';
-        let centenas = parseInt(n / 100);
-        let decenas = parseInt((n % 100) / 10);
-        let unidades = parseInt(n % 10);
+    // Method to get the rest of string of cardinal number got
 
-        switch (centenas) {
+    getTexto(n){
+
+        let result = '';
+
+        let centenas = n / 100;
+        let decenas = (n % 100) / 10;
+        let unidades = (n % 10);
+
+        switch (parseInt(centenas)) {
             case 0:
                 break;
             case 1:
-                if (decenas === 0 && unidades === 0) {
+                if (decenas == 0 && unidades == 0) {
                     result+="Cien ";
                     return result;
                 } else result+="Ciento ";
@@ -73,107 +82,107 @@ class NumberCardinalText {
                 break;
         }
 
-        switch (decenas) {
+        switch (parseInt(decenas)) {
             case 0:
                 break;
             case 1:
                 if (unidades == 0) {
-                    result+="Diez ";
+                    result+="Décimo ";
                     return result;
                 } else if (unidades == 1) {
-                    result+="Once ";
+                    result+="Undécimo ";
                     return result;
                 } else if (unidades == 2) {
-                    result+="Doce ";
+                    result+="Duodécimo ";
                     return result;
                 } else if (unidades == 3) {
-                    result+="Trece ";
+                    result+="Décimo tercero ";
                     return result;
                 } else if (unidades == 4) {
-                    result+="Catorce ";
+                    result+="Décimo cuarto ";
                     return result;
                 } else if (unidades == 5) {
-                    result+="Quince ";
+                    result+="Décimo quinto ";
                     return result;
-                } else result+="Dieci";
+                } else result+="Décimo sexto ";
                 break;
             case 2:
                 if (unidades == 0) {
-                    result+="Veinte ";
+                    result+="Vigésimo ";
                     return result;
-                } else result+="Veinti";
+                } else result+="Vigésimo";
                 break;
             case 3:
-                result+="Treinta ";
+                result+="Trigésimo ";
                 break;
             case 4:
-                result+="Cuarenta ";
+                result+="Cuadragésimo ";
                 break;
             case 5:
-                result+="Cincuenta ";
+                result+="Quincuagésimo ";
                 break;
             case 6:
-                result+="Sesenta ";
+                result+="Sexagésimo ";
                 break;
             case 7:
-                result+="Setenta ";
+                result+="Septuagésimo ";
                 break;
             case 8:
-                result+="Ochenta ";
+                result+="Octogésimo ";
                 break;
             case 9:
-                result+="Noventa ";
+                result+="Nonagésimo ";
                 break;
         }
-        
-        if (decenas > 2 && unidades > 0 && !(result.includes('Veinti') || result.includes('Dieci')))
-            result+= (space)? "y " : " y ";
 
-        switch (unidades) {
+        
+        if (decenas > 2 && unidades > 0)
+            result+=" ";
+
+        switch (parseInt(unidades)) {
             case 0:
                 break;
             case 1:
-                if(decenas === 2 || centenas > 0)
-                    result+="Ún ";
-                else
-                    result+= (!space)? "Un " : "Uno ";
+                result+="Primero ";
                 break;
             case 2:
-                if(!space)
-                    result+="Dós ";
-                else
-                    result+="Dos"
+                result+="Segundo ";
                 break;
             case 3:
-                result+="Tres ";
+                result+="Tercero ";
                 break;
             case 4:
-                result+="Cuatro ";
+                result+="Cuarto ";
                 break;
             case 5:
-                result+="Cinco ";
+                result+="Quinto ";
                 break;
             case 6:
-                result+="Séis ";
+                result+="Sexto ";
                 break;
             case 7:
-                result+="Siete ";
+                result+="Septimo ";
                 break;
             case 8:
-                result+="Ocho ";
+                result+="Octavo ";
                 break;
             case 9:
-                result+="Nueve ";
+                result+="Noveno ";
                 break;
         }
+
 
         return result;
 
 
     }
 
+    // Method to get final result
+
     getResult(number){
-        return capitalize(this.processNumberToReturn(number).toLowerCase());
+
+        return this.processNumberToReturn(number);
+
     }
 
 }
