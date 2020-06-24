@@ -28,7 +28,7 @@ const cardinal_assertions = [
     [130, "Ciento Treinta"],
     [500, "Quinientos"],
     [1000, "Un Mil"],
-    [1001, "Mil uno"],
+    [1001, "Mil Uno"],
     [1007, "Mil Siete"],
     [1011, "Mil Once"],
     [1017, "Mil Diecisiete"],

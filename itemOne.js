@@ -17,17 +17,15 @@ class NumberCardinalText {
         let miles = parseInt((cardinal / 1000) % 1000);
         let millions = parseInt((cardinal / 1000000) % 1000);
         let mileMillions = Math.trunc((cardinal / 1000000000) % 1000);
-
-        //console.log({units, miles, millions, mileMillions});
         
         if (mileMillions > 0) result += this.getTexto(mileMillions, result.length > 0).toString() + "Mil ";
         if (millions > 0) result += this.getTexto(millions,result.length > 0).toString();
 
-        if (mileMillions == 0 && millions == 1) result+="Millón ";
+        if (mileMillions === 0 && millions === 1) result+="Millón ";
         else if (mileMillions > 0 || millions > 0) result+="Millones ";
 
         if (miles > 0) result += this.getTexto(miles,result.length > 0).toString() + "Mil ";
-        if(miles === 1 && units > 0 && result.length > 0 && result.includes("Mil ")) result = result.split('Un ')[1]
+        if (miles === 1 && units > 0 && result.length > 0 && result.includes("Mil ")) result = result.split('Ún ')[1]? result.split('Ún ')[1] : result.split('Uno ')[1]? result.split('Uno ')[1] : result.split('Un ')[1];
         if (units > 0) result += this.getTexto(units,result.length > 0).toString();
 
         return result;
@@ -36,15 +34,15 @@ class NumberCardinalText {
 
     getTexto(n, space){
         let result = '';
-        let centenas = n / 100;
-        let decenas = (n % 100) / 10;
-        let unidades = (n % 10);
+        let centenas = parseInt(n / 100);
+        let decenas = parseInt((n % 100) / 10);
+        let unidades = parseInt(n % 10);
 
-        switch (parseInt(centenas)) {
+        switch (centenas) {
             case 0:
                 break;
             case 1:
-                if (decenas == 0 && unidades == 0) {
+                if (decenas === 0 && unidades === 0) {
                     result+="Cien ";
                     return result;
                 } else result+="Ciento ";
@@ -75,7 +73,7 @@ class NumberCardinalText {
                 break;
         }
 
-        switch (parseInt(decenas)) {
+        switch (decenas) {
             case 0:
                 break;
             case 1:
@@ -129,21 +127,22 @@ class NumberCardinalText {
         }
         
         if (decenas > 2 && unidades > 0 && !(result.includes('Veinti') || result.includes('Dieci')))
-            result+= (!space)? " y " : "y ";
+            result+= (space)? "y " : " y ";
 
-        //console.log({unidades,decenas,centenas})
-
-        switch (parseInt(unidades)) {
+        switch (unidades) {
             case 0:
                 break;
             case 1:
-                if(!space)
-                    result+="Un ";
+                if(decenas === 2 || centenas > 0)
+                    result+="Ún ";
                 else
-                    result+="Uno"
+                    result+= (!space)? "Un " : "Uno ";
                 break;
             case 2:
-                result+="Dos ";
+                if(!space)
+                    result+="Dós ";
+                else
+                    result+="Dos"
                 break;
             case 3:
                 result+="Tres ";
@@ -155,7 +154,7 @@ class NumberCardinalText {
                 result+="Cinco ";
                 break;
             case 6:
-                result+="Seis ";
+                result+="Séis ";
                 break;
             case 7:
                 result+="Siete ";
