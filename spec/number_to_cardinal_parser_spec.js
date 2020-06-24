@@ -56,6 +56,8 @@ const cardinal_assertions = [
     [127521, "Ciento Veintisiete Mil Quinientos Veintiún"],
     [130500, "Ciento Treinta Mil Quinientos"],
     [1000000, "Un Millón"],
+    [2000000, "Dos Millones"],
+    [3000000, "Tres Millones"],
 ];
 
 // describe("Get string cardinal representation of a number: ", function () {
