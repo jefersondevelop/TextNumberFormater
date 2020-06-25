@@ -1,9 +1,4 @@
-let NumberCardinalText = require("../src/itemOne");
-let NumberOrdinalText = require("../src/itemTwo");
 const cardinalParser = require('../lib/number_to_cardinal_parser')();
-const instanceItemOne = new NumberCardinalText();
-const instanceItemTwo = new NumberOrdinalText();
-
 
 const cardinal_assertions = [
     [0, "Cero"],
@@ -12,8 +7,8 @@ const cardinal_assertions = [
     [11, "Once"],
     [16, "Dieciséis"],
     [17, "Diecisiete"],
-    [21, "Veintiún"],
-    [22, "Veintidós"],
+    [21, "Veintiuno"],
+    [22, "Veintidos"],
     [27, "Veintisiete"],
     [30, "Treinta"],
     [31, "Treinta y Uno"],
@@ -23,23 +18,23 @@ const cardinal_assertions = [
     [107, "Ciento Siete"],
     [111, "Ciento Once"],
     [117, "Ciento Diecisiete"],
-    [121, "Ciento Veintiún"],
+    [121, "Ciento Veintiuno"],
     [127, "Ciento Veintisiete"],
     [130, "Ciento Treinta"],
     [500, "Quinientos"],
-    [1000, "Un Mil"],
+    [1000, "Mil"],
     [1001, "Mil Uno"],
     [1007, "Mil Siete"],
     [1011, "Mil Once"],
     [1017, "Mil Diecisiete"],
-    [1021, "Mil Veintiún"],
+    [1021, "Mil Veintiuno"],
     [1027, "Mil Veintisiete"],
     [1030, "Mil Treinta"],
     [1101, "Mil Ciento Uno"],
     [1107, "Mil Ciento Siete"],
     [1111, "Mil Ciento Once"],
     [1117, "Mil Ciento Diecisiete"],
-    [1121, "Mil Ciento Veintiún"],
+    [1121, "Mil Ciento Veintiuno"],
     [1127, "Mil Ciento Veintisiete"],
     [1130, "Mil Ciento Treinta"],
     [1500, "Mil Quinientos"],
@@ -51,11 +46,11 @@ const cardinal_assertions = [
     [107500, "Ciento Siete Mil Quinientos"],
     [111500, "Ciento Once Mil Quinientos"],
     [117500, "Ciento Diecisiete Mil Quinientos"],
-    [121500, "Ciento Veintiún Mil Quinientos"],
+    [121500, "Ciento Veintiun Mil Quinientos"],
     [127500, "Ciento Veintisiete Mil Quinientos"],
-    [127521, "Ciento Veintisiete Mil Quinientos Veintiún"],
+    [127521, "Ciento Veintisiete Mil Quinientos Veintiuno"],
     [130500, "Ciento Treinta Mil Quinientos"],
-    [1000000, "Un Millón"],
+    [1000000, "Un Millon"],
     [2000000, "Dos Millones"],
     [3000000, "Tres Millones"],
 ];
@@ -73,7 +68,7 @@ const cardinal_assertions = [
 describe("Get string cardinal representation of a number refactor: ", function () {
     cardinal_assertions.forEach((assertion) => {
         it(`converts the number ${assertion[0]}`, () => {
-            const actual = cardinalParser.parse(assertion[0]).trim();
+            const actual = cardinalParser.parse(assertion[0]);
             const expected = assertion[1];
             expect(actual).toEqual(expected);
         });

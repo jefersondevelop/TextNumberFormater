@@ -1,229 +1,94 @@
 /* @flow */
 'use-strict'
 
-const capitalize = require('./utils')
 const cardinalParser = () => {
+    const digitDescriptors = [
+        ['', '', ''],
+        ['Cien ', 'Diez ', 'Uno '],
+        ['Doscientos ', 'Veinte ', 'Dos '],
+        ['Trescientos ', 'Treinta ', 'Tres '],
+        ['Cuatrocientos ', 'Cuarenta ', 'Cuatro '],
+        ['Quinientos ', 'Cincuenta ', 'Cinco '],
+        ['Seiscientos ', 'Sesenta ', 'Séis '],
+        ['Setecientos ', 'Setenta ', 'Siete '],
+        ['Ochocientos ', 'Ochenta ', 'Ocho '],
+        ['Novecientos ', 'Noventa ', 'Nueve '],
+    ]
+    const descriptor1To15 = ['', 'Once ', 'Doce ', 'Trece ', 'Catorce ', 'Quince '];
 
     return {
         parse
     }
 
-    function parse(digits: number): string {
-        return capitalize(processNumberToReturn(digits).toLowerCase());
-    }
-
-    function processNumberToReturn(digits: number): string {
-        let result = '';
-
+    function parse(digits: number) {
         if (digits === 0) {
-            result += 'Cero ';
-            return result;
+            return 'Cero';
+        }
+        let mileMillions = Math.trunc((digits / 1000000000) % 1000);
+        let millions = parseInt((digits / 1000000) % 1000);
+        let miles = parseInt((digits / 1000) % 1000);
+        let units = parseInt(digits % 1000);
+        let result = [];
+
+        if (mileMillions > 0) {
+            result = result.concat(...generateArrayOfKeyWords(mileMillions, 'Billones ', 'Billon '));
         }
 
-        let units = parseInt(digits % 1000);
-        let miles = parseInt((digits / 1000) % 1000);
-        let millions = parseInt((digits / 1000000) % 1000);
-        let mileMillions = Math.trunc((digits / 1000000000) % 1000);
-
-        if (mileMillions > 0) result += getCardinalString(mileMillions, result.length > 0) + 'Mil ';
-        if (millions > 0) result += millions === 1 ? 'Un ' : getCardinalString(millions, result.length > 0);
-
-        if (mileMillions === 0 && millions === 1) result += 'Millón ';
-        else if (mileMillions > 0 || millions > 0) result += 'Millones ';
+        if (millions > 0) {
+            result = result.concat(...generateArrayOfKeyWords(millions, 'Millones ', 'Millon '));
+        }
 
         if (miles > 0) {
-            result += miles === 1 ? 'Un Mil ' : getCardinalString(miles, result.length > 0) + 'Mil ';
+            const milesResult = generateArrayOfKeyWords(miles, 'Mil ', 'Mil ');
+            if (miles === 1 && mileMillions === 0 && millions === 0) {
+                milesResult[2] = '';
+            }
+            result = result.concat(...milesResult);
         }
-        if (miles === 1 && units > 0 && result.length > 0 && result.includes('Mil ')) result = result.split('Un ')[1] ? result.split('Un ')[1] : result.split('Uno ')[1] ? result.split('Uno ')[1] : result.split('Un ')[1];
-
 
         if (units > 0) {
-            result += units === 1 ? 'Uno' : getCardinalString(units, result.length > 0);
-
+            result = result.concat(...generateArrayOfKeyWords(units, '', ''));
         }
 
-        return result;
-
+        return result.join("").trim();
     }
 
-    function getCardinalString(digits: number, separator: string): string {
-        let digitStringRepresentation = '';
-        const hundreds = parseInt(digits / 100);
-        const tens = parseInt((digits % 100) / 10);
-        const units = parseInt(digits % 10);
-
-        if (hundreds === 1 && tens === 0 && units === 0) {
-            return 'Cien ';
-        }
-
-        // if (hundreds === 1 && tens === 0 && units === 0) {
-        //     return 'Cien ';
-        // }
-
-        digitStringRepresentation += getHundredsCardinalString(hundreds);
-
-        digitStringRepresentation += getTensCardinalString(tens, units);
-
-        if (tens === 1 && units < 5) {
-            return digitStringRepresentation;
-        }
-
-        if (tens > 2 && units > 0 && !(digitStringRepresentation.includes('Veinti') || digitStringRepresentation.includes('Dieci'))) {
-            digitStringRepresentation += (separator) ? 'y ' : 'y ';
-        }
-
-        digitStringRepresentation += getUnitsCardinalString(units, tens, hundreds, separator);
-
-        return digitStringRepresentation;
-
-
+    function generateArrayOfKeyWords(digits: number, pluralUnits: string, singularUnit: string): string[] {
+        const digitsProcessed = digits.toString().padStart(3, "0").split('');
+        const digitRepresentationSplit = getDigitDescriptors(digitsProcessed);
+        applySpanishRules(digitsProcessed, digitRepresentationSplit, !pluralUnits);
+        digitRepresentationSplit.push(digits > 1 ? pluralUnits : singularUnit);
+        return digitRepresentationSplit;
     }
 
-    function getHundredsCardinalString(hundreds: number): string {
-        let hundredsCardinalString;
-        switch (hundreds) {
-            case 0:
-                hundredsCardinalString = '';
-                break;
-            case 1:
-                hundredsCardinalString = 'Ciento ';
-                break;
-            case 2:
-                hundredsCardinalString = 'Doscientos ';
-                break;
-
-            case 3:
-                hundredsCardinalString = 'Trescientos ';
-                break;
-
-            case 4:
-                hundredsCardinalString = 'Cuatrocientos ';
-                break;
-
-            case 5:
-                hundredsCardinalString = 'Quinientos ';
-                break;
-
-            case 6:
-                hundredsCardinalString = 'Seiscientos ';
-                break;
-
-            case 7:
-                hundredsCardinalString = 'Setecientos ';
-                break;
-
-            case 8:
-                hundredsCardinalString = 'Ochocientos ';
-                break;
-
-            case 9:
-                hundredsCardinalString = 'Novecientos ';
-                break;
+    function applySpanishRules(digits: string[], stringRepresentation: string[], isUnit: boolean): void {
+        if (+digits[2] === 1 && !isUnit) {
+            stringRepresentation[2] = 'Un ';
         }
-        return hundredsCardinalString;
+        if (+digits[0] === 1 && (+digits[1] > 0 || +digits[2] > 0)) {
+            stringRepresentation[0] = 'Ciento ';
+        }
+        if (+digits[1] > 0 && +digits[1] < 2 && +digits[2] > 0 && +digits[2] <= 5) {
+            stringRepresentation[1] = descriptor1To15[digits[2]];
+            stringRepresentation[2] = '';
+        }
+        if (+digits[1] > 0 && +digits[1] < 2 && +digits[2] > 5) {
+            stringRepresentation[1] = 'Dieci';
+            stringRepresentation[2] = stringRepresentation[2].toLowerCase();
+        }
+        if (+digits[1] === 2 && +digits[2] > 0) {
+            stringRepresentation[1] = 'Veinti';
+            stringRepresentation[2] = stringRepresentation[2].toLowerCase();
+        }
+        if (+digits[1] > 2 && +digits[2] > 0) {
+            stringRepresentation[1] += 'y ';
+        }
     }
 
-    function getTensCardinalString(tens: number, units: number): string {
-        let tensCardinalString = '';
-        switch (tens) {
-            case 0:
-                tensCardinalString = '';
-                break;
-            case 1:
-                if (units === 0) {
-                    tensCardinalString += 'Diez ';
-                } else if (units === 1) {
-                    tensCardinalString += 'Once ';
-                } else if (units === 2) {
-                    tensCardinalString += 'Doce ';
-                } else if (units === 3) {
-                    tensCardinalString += 'Trece ';
-                } else if (units === 4) {
-                    tensCardinalString += 'Catorce ';
-                } else if (units === 5) {
-                    tensCardinalString += 'Quince ';
-                } else {
-                    tensCardinalString += 'Dieci';
-                }
-                break;
-            case 2:
-                if (units === 0) {
-                    tensCardinalString += 'Veinte ';
-                } else {
-                    tensCardinalString += 'Veinti';
-                }
-                break;
-            case 3:
-                tensCardinalString += 'Treinta ';
-                break;
-            case 4:
-                tensCardinalString += 'Cuarenta ';
-                break;
-            case 5:
-                tensCardinalString += 'Cincuenta ';
-                break;
-            case 6:
-                tensCardinalString += 'Sesenta ';
-                break;
-            case 7:
-                tensCardinalString += 'Setenta ';
-                break;
-            case 8:
-                tensCardinalString += 'Ochenta ';
-                break;
-            case 9:
-                tensCardinalString += 'Noventa ';
-                break;
-        }
-        return tensCardinalString;
-    }
-
-    function getUnitsCardinalString(units: number, tens: number, hundreds: number, separator: string): string {
-        let unitsCardinalString = '';
-        switch (units) {
-            case 0:
-                break;
-            case 1:
-                if (tens === 2) {
-                    unitsCardinalString += 'Ún ';
-                } else if (hundreds > 0) {
-                    unitsCardinalString += (separator) ? 'Uno ' : 'Un ';
-                } else {
-                    unitsCardinalString += (!separator) ? 'Uno ' : 'Un ';
-                }
-                break;
-            case 2:
-                if (tens === 2 && !separator) {
-                    unitsCardinalString += 'Dós ';
-                } else{
-                    unitsCardinalString += 'Dos ';
-                }
-                break;
-            case 3:
-                unitsCardinalString += 'Tres ';
-                break;
-            case 4:
-                unitsCardinalString += 'Cuatro ';
-                break;
-            case 5:
-                unitsCardinalString += 'Cinco ';
-                break;
-            case 6:
-                unitsCardinalString += 'Séis ';
-                break;
-            case 7:
-                unitsCardinalString += 'Siete ';
-                break;
-            case 8:
-                unitsCardinalString += 'Ocho ';
-                break;
-            case 9:
-                unitsCardinalString += 'Nueve ';
-                break;
-        }
-        return unitsCardinalString;
+    function getDigitDescriptors(digits: number): string[] {
+        return [digitDescriptors[digits[0]][0], digitDescriptors[digits[1]][1], digitDescriptors[digits[2]][2]];
     }
 }
 
-
 module.exports = cardinalParser;
+
