@@ -9,7 +9,7 @@ const cardinalParser = () => {
         ['Trescientos ', 'Treinta ', 'Tres '],
         ['Cuatrocientos ', 'Cuarenta ', 'Cuatro '],
         ['Quinientos ', 'Cincuenta ', 'Cinco '],
-        ['Seiscientos ', 'Sesenta ', 'Séis '],
+        ['Seiscientos ', 'Sesenta ', 'Seis '],
         ['Setecientos ', 'Setenta ', 'Siete '],
         ['Ochocientos ', 'Ochenta ', 'Ocho '],
         ['Novecientos ', 'Noventa ', 'Nueve '],

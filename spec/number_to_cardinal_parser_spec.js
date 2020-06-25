@@ -5,7 +5,7 @@ const cardinal_assertions = [
     [1, "Uno"],
     [7, "Siete"],
     [11, "Once"],
-    [16, "Dieciséis"],
+    [16, "Dieciseis"],
     [17, "Diecisiete"],
     [21, "Veintiuno"],
     [22, "Veintidos"],
@@ -53,6 +53,17 @@ const cardinal_assertions = [
     [1000000, "Un Millon"],
     [2000000, "Dos Millones"],
     [3000000, "Tres Millones"],
+    [24081994, 'Veinticuatro Millones Ochenta y Un Mil Novecientos Noventa y Cuatro'],
+    [433, 'Cuatrocientos Treinta y Tres'],
+    [1994, 'Mil Novecientos Noventa y Cuatro'],
+    [156892, 'Ciento Cincuenta y Seis Mil Ochocientos Noventa y Dos'],
+    [2345124, 'dos millones trescientos cuarenta y cinco mil ciento veinticuatro'],
+    [24081994, 'veinticuatro millones ochenta y un mil novecientos noventa y cuatro'],
+    [45, 'cuarenta y cinco'],
+    [6, 'seis'],
+    [567555, 'quinientos sesenta y siete mil quinientos cincuenta y cinco'],
+    [3001, 'tres mil uno'],
+    [120000000, 'ciento veinte millones'],
 ];
 
 // describe("Get string cardinal representation of a number: ", function () {
@@ -70,7 +81,7 @@ describe("Get string cardinal representation of a number refactor: ", function (
         it(`converts the number ${assertion[0]}`, () => {
             const actual = cardinalParser.parse(assertion[0]);
             const expected = assertion[1];
-            expect(actual).toEqual(expected);
+            expect(actual.toLowerCase()).toEqual(expected.toLowerCase());
         });
     });
 });
