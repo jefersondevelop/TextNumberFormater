@@ -21,8 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="341ae3f9-2fe3-4ae9-a63c-923ba3624061" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/itemOne.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spec/number_to_cardinal_parser_spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/spec/number_to_cardinal_parser_spec.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/number_to_cardinal_parser_deprecated.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/number_to_ordinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/number_to_ordinal_parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/itemOne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/number_to_ordinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/number_to_ordinal_parser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +79,8 @@
       <workItem from="1592946242143" duration="7210000" />
       <workItem from="1593003311808" duration="584000" />
       <workItem from="1593010574694" duration="3922000" />
-      <workItem from="1593117079161" duration="9561000" />
+      <workItem from="1593117079161" duration="10309000" />
+      <workItem from="1593173535241" duration="310000" />
     </task>
     <servers />
   </component>

@@ -20,7 +20,7 @@ const cardinalParser = () => {
         parse
     }
 
-    function parse(digits: number) {
+    function parse(digits: number): string {
         if (digits === 0) {
             return 'Cero';
         }
