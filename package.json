@@ -8,7 +8,7 @@
     "build": "flow-remove-types src/ -d lib/",
     "start": "nodemon index.js"
   },
-  "author": "Manuel. Jeferson",
+  "author": ".",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

@@ -21,11 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="341ae3f9-2fe3-4ae9-a63c-923ba3624061" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/itemOne.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/number_to_cardinal_parser_deprecated.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/number_to_ordinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/number_to_ordinal_parser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/itemOne.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/number_to_ordinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/number_to_ordinal_parser.js" afterDir="false" />
     </list>
@@ -80,7 +78,8 @@
       <workItem from="1593003311808" duration="584000" />
       <workItem from="1593010574694" duration="3922000" />
       <workItem from="1593117079161" duration="10309000" />
-      <workItem from="1593173535241" duration="310000" />
+      <workItem from="1593173535241" duration="1250000" />
+      <workItem from="1593310939520" duration="1398000" />
     </task>
     <servers />
   </component>
@@ -115,5 +114,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1592948173511" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/number_to_ordinal_parser.js</url>
+          <line>58</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

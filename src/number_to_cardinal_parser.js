@@ -69,7 +69,7 @@ const cardinalParser = () => {
             stringRepresentation[0] = 'Ciento ';
         }
         if (+digits[1] > 0 && +digits[1] < 2 && +digits[2] > 0 && +digits[2] <= 5) {
-            stringRepresentation[1] = descriptor1To15[digits[2]];
+            stringRepresentation[1] = descriptor1To15[+digits[2]];
             stringRepresentation[2] = '';
         }
         if (+digits[1] > 0 && +digits[1] < 2 && +digits[2] > 5) {
@@ -85,8 +85,8 @@ const cardinalParser = () => {
         }
     }
 
-    function getDigitDescriptors(digits: number): string[] {
-        return [digitDescriptors[digits[0]][0], digitDescriptors[digits[1]][1], digitDescriptors[digits[2]][2]];
+    function getDigitDescriptors(digits: string[]): string[] {
+        return [digitDescriptors[+digits[0]][0], digitDescriptors[+digits[1]][1], digitDescriptors[+digits[2]][2]];
     }
 }
 
