@@ -1,5 +1,7 @@
-var cardinalParse = require('./src/number_to_cardinal_parser')();
-var ordinalParser = require('./src/number_to_ordinal_parser');
+// var cardinalParse = require('./src/number_to_cardinal_parser')();
+// var ordinalParser = require('./src/number_to_ordinal_parser');
+
+var result = require('./alternalResults');
 
 const readline = require('readline').createInterface({
     input: process.stdin,
@@ -19,8 +21,7 @@ readline.question('Type an integer number to get cardinal string: ', (number) =>
     if(isNaN(number))
         console.log("El número ingresado no es válido.")
     else{
-        console.log(cardinalParse.parse(number).replace(/\s\s+/g, ' '));
-        console.log(ordinalParser(number,'m'));
+        console.log(result().parse(number))
     }
     
     readline.close();
