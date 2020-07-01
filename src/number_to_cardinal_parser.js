@@ -15,42 +15,84 @@ const cardinalParser = () => {
         ['Novecientos ', 'Noventa ', 'Nueve '],
     ]
     const descriptor1To15 = ['', 'Once ', 'Doce ', 'Trece ', 'Catorce ', 'Quince '];
-
+    const dividerUnits = [
+        BigInt("1000000000000000000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000000"),
+        BigInt("1000000000000000000000000000"),
+        BigInt("1000000000000000000000000"),
+        BigInt("1000000000000000000000"),
+        BigInt("1000000000000000000"),
+        BigInt("1000000000000000"),
+        BigInt("1000000000000"),
+        BigInt("1000000000"),
+        BigInt("1000000"),
+        BigInt("1000"),
+        BigInt("1")];
+    const denominations = [
+        ['Decillones ', 'Decillon '],
+        ['Mil ', 'Mil '],
+        ['Nonillones ', 'Nonillon '],
+        ['Mil ', 'Mil '],
+        ['Octillones ', 'Octillon '],
+        ['Mil ', 'Mil '],
+        ['Septillones ', 'Septillon '],
+        ['Mil ', 'Mil '],
+        ['Sextillones ', 'Sextillon '],
+        ['Mil ', 'Mil '],
+        ['Quintillones ', 'Quintillon '],
+        ['Mil ', 'Mil '],
+        ['Cuatrillones ', 'Cuatrillon '],
+        ['Mil ', 'Mil '],
+        ['Trillones ', 'Trillon '],
+        ['Mil ', 'Mil  '],
+        ['Billones ', 'Billon '],
+        ['Mil ', 'Mil  '],
+        ['Millones ', 'Millon '],
+        ['Mil ', 'Mil '],
+        ['', '']];
     return {
         parse
     }
 
-    function parse(digits: number): string {
-        if (digits === 0) {
+    function parse(digits: string, raw: boolean): string {
+        if (digits == 0) {
             return 'Cero';
         }
-        let mileMillions = Math.trunc((digits / 1000000000) % 1000);
-        let millions = parseInt((digits / 1000000) % 1000);
-        let miles = parseInt((digits / 1000) % 1000);
-        let units = parseInt(digits % 1000);
         let result = [];
-
-        if (mileMillions > 0) {
-            result = result.concat(...generateArrayOfKeyWords(mileMillions, 'Billones ', 'Billon '));
-        }
-
-        if (millions > 0) {
-            result = result.concat(...generateArrayOfKeyWords(millions, 'Millones ', 'Millon '));
-        }
-
-        if (miles > 0) {
-            const milesResult = generateArrayOfKeyWords(miles, 'Mil ', 'Mil ');
-            if (miles === 1 && mileMillions === 0 && millions === 0) {
-                milesResult[2] = '';
+        dividerUnits.forEach((divider, index) => {
+            const value = (BigInt(digits) / BigInt(divider)) % BigInt("1000");
+            if (digits >= BigInt("1000000000000")) {
+                const valueBig = (BigInt(digits) / divider) % BigInt("1000");
+                if (valueBig > 0) {
+                    const tempResult = parse(valueBig, true);
+                    if (valueBig > BigInt("1")) {
+                        tempResult[3] = denominations[index][0];
+                    } else if (valueBig === BigInt("1")) {
+                        tempResult[2] = "Un "
+                        tempResult[3] = denominations[index][1];
+                    }
+                    result = result.concat(...tempResult);
+                }
+            } else {
+                if (value > 0) {
+                    const keyWords = generateArrayOfKeyWords(value, denominations[index][0], denominations[index][1]);
+                    if (keyWords.join('') === 'Un Mil ') {
+                        keyWords[2] = '';
+                    }
+                    result = result.concat(...keyWords);
+                }
             }
-            result = result.concat(...milesResult);
-        }
-
-        if (units > 0) {
-            result = result.concat(...generateArrayOfKeyWords(units, '', ''));
-        }
-
-        return result.join("").trim();
+        });
+        return raw ? result : result.join("").trim();
     }
 
     function generateArrayOfKeyWords(digits: number, pluralUnits: string, singularUnit: string): string[] {
@@ -92,3 +134,9 @@ const cardinalParser = () => {
 
 module.exports = cardinalParser;
 
+
+console.log(cardinalParser().parse("100"));
+console.log(cardinalParser().parse("1000000000000000000"));
+console.log(cardinalParser().parse("1000000000000000000000000"));
+console.log(cardinalParser().parse("1000000000000000000000000000000"));
+console.log(cardinalParser().parse("1000000000000000000000000000000000000"));
