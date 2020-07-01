@@ -63,7 +63,7 @@ const cardinalParser = () => {
         parse
     }
 
-    function parse(digits: string, raw: boolean): string {
+    function parse(digits: mixed, raw?: boolean): string | string[] {
         if (digits == 0) {
             return 'Cero';
         }

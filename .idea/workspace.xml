@@ -21,8 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="341ae3f9-2fe3-4ae9-a63c-923ba3624061" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alternalResults.js" beforeDir="false" afterPath="$PROJECT_DIR$/alternalResults.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/number_to_cardinal_parser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/number_to_cardinal_parser_spec.js" beforeDir="false" afterPath="$PROJECT_DIR$/spec/number_to_cardinal_parser_spec.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/number_to_cardinal_parser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +79,7 @@
       <workItem from="1593173535241" duration="1250000" />
       <workItem from="1593310939520" duration="1717000" />
       <workItem from="1593355353415" duration="76000" />
-      <workItem from="1593572366134" duration="13588000" />
+      <workItem from="1593572366134" duration="14242000" />
     </task>
     <servers />
   </component>
