@@ -61,6 +61,7 @@ describe("Get string ordinal representation of a number refactor: ", function ()
         it(`converts the number ${assertion[0]}`, () => {
             const actual = ordinalParser(assertion[0]).trim();
             const expected = assertion[1];
+            console.log(actual)
             expect(actual).toEqual(expected);
         });
     });

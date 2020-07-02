@@ -67,21 +67,12 @@ const cardinal_assertions = [
     ["9999999999999", 'nueve billones novecientos noventa y nueve mil novecientos noventa y nueve millones novecientos noventa y nueve mil novecientos noventa y nueve'],
 ];
 
-// describe("Get string cardinal representation of a number: ", function () {
-//     cardinal_assertions.forEach((assertion) => {
-//         it(`converts the number ${assertion[0]}`, () => {
-//             const actual = instanceItemOne.getResult(assertion[0]).trim();
-//             const expected = assertion[1];
-//             expect(actual).toEqual(expected);
-//         });
-//     });
-// });
-
 describe("Get string cardinal representation of a number refactor: ", function () {
     cardinal_assertions.forEach((assertion) => {
         it(`converts the number ${assertion[0]}`, () => {
             const actual = cardinalParser.parse(assertion[0]);
             const expected = assertion[1];
+            console.log(actual.toLowerCase())
             expect(actual.toLowerCase()).toEqual(expected.toLowerCase());
         });
     });

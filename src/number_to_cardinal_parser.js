@@ -134,9 +134,8 @@ const cardinalParser = () => {
 
 module.exports = cardinalParser;
 
-
-console.log(cardinalParser().parse("100"));
-console.log(cardinalParser().parse("1000000000000000000"));
-console.log(cardinalParser().parse("1000000000000000000000000"));
-console.log(cardinalParser().parse("1000000000000000000000000000000"));
-console.log(cardinalParser().parse("1000000000000000000000000000000000000"));
+// console.log(cardinalParser().parse("100"));
+// console.log(cardinalParser().parse("1000000000000000000"));
+// console.log(cardinalParser().parse("1000000000000000000000000"));
+// console.log(cardinalParser().parse("1000000000000000000000000000000"));
+// console.log(cardinalParser().parse("1000000000000000000000000000000000000"));

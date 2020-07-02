@@ -18,7 +18,7 @@ const ordinalCases = [
 
 ]
 
-const ordinalParser = (number: number, gender: string): string => {
+const ordinalParser = (number:number, gender:string) : string => {
 
     if (!number || number === 0) {
         return 'Cero'
