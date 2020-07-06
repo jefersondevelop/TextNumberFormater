@@ -43,17 +43,21 @@ const cardinal_assertions = [
     [99001, "Noventa y Nueve Milésimo Primero"],
     [100500, "Cien Milésimo Quingentésimo"],
     [100501, "Cien Milésimo Quingentésimo Primero"],
-    [101500, "Ciento Uno Milésimo Quingentésimo"],
+    [101500, "Ciento Un Milésimo Quingentésimo"],
     [107500, "Ciento Siete Milésimo Quingentésimo"],
     [111500, "Ciento Once Milésimo Quingentésimo"],
     [117500, "Ciento Diecisiete Milésimo Quingentésimo"],
-    [121500, "Ciento Veintiuno Milésimo Quingentésimo"],
+    [121500, "Ciento Veintiun Milésimo Quingentésimo"],
     [127500, "Ciento Veintisiete Milésimo Quingentésimo"],
     [127521, "Ciento Veintisiete Milésimo Quingentésimo Vigésimo Primero"],
     [130500, "Ciento Treinta Milésimo Quingentésimo"],
-    [1000000, "Mil Milésimo"],
-    [2000000, "Dos Mil Milésimo"],
-    [3000000, "Tres Mil Milésimo"],
+    [10150015857,"Diez Mil Ciento Cincuenta Millones Quince Milésimo Octingentésimo Quincuagésimo Séptimo"],
+    [10150115857,"Diez Mil Ciento Cincuenta Millones Ciento Quince Milésimo Octingentésimo Quincuagésimo Séptimo"],
+    [101500158573,"Ciento Un Mil Quinientos Millones Ciento Cincuenta y Ocho Milésimo Quingentésimo Septuagésimo Tercero"],
+    [1015001585734,"Un Billon Quince Mil Un Millon Quinientos Ochenta y Cinco Milésimo Septingentésimo Trigésimo Cuarto"],
+    [50450115853474,"Cincuenta Billones Cuatrocientos Cincuenta Mil Ciento Quince Millones Ochocientos Cincuenta y Tres Milésimo Cuadrigentésimo Septuagésimo Cuarto"],
+    [504501145853474,"Quinientos Cuatro Billones Quinientos Uno Mil Ciento Cuarenta y Cinco Millones Ochocientos Cincuenta y Tres Milésimo Cuadrigentésimo Septuagésimo Cuarto"],
+    [2204501145853474, "Dos Mil Doscientos Cuatro Billones Quinientos Uno Mil Ciento Cuarenta y Cinco Millones Ochocientos Cincuenta y Tres Milésimo Cuadrigentésimo Septuagésimo Cuarto"]
 ];
 
 describe("Get string ordinal representation of a number refactor: ", function () {
